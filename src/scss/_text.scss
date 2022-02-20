@@ -1,0 +1,15 @@
+.text {
+  font-size: $font-size-base;
+
+  &-lg {
+    font-size: $font-size-lg;
+  }
+
+  &-sm {
+    font-size: $font-size-sm;
+  }
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}

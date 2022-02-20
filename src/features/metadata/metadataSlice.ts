@@ -27,34 +27,37 @@ export interface Project {
     name: string;
 }
 
-export interface FilterOption {
+export interface Option {
     id: string;
     label: string;
 }
 
 interface OptionState {
     status: Status;
-    data: FilterOption[];
+    data: Option[];
+    mapping: Record<string, Option>;
 }
 
-export interface FiltersState {
+export interface MetadataState {
     gateway: OptionState;
     project: OptionState;
 }
 
-const initialState: FiltersState = {
+const initialState: MetadataState = {
     gateway: {
         status: 'idle',
-        data: []
+        data: [],
+        mapping: {}
     },
     project: {
         status: 'idle',
-        data: []
+        data: [],
+        mapping: {}
     }
 };
 
 export const gatewaysAsync = createAsyncThunk(
-    'filter/getGateways',
+    'metadata/getGateways',
     async () => {
         const response = await getGateways();
         return response.data.map(({gatewayId, name}: Gateway) => ({
@@ -65,7 +68,7 @@ export const gatewaysAsync = createAsyncThunk(
 );
 
 export const projectsAsync = createAsyncThunk(
-    'filter/getProjects',
+    'metadata/getProjects',
     async () => {
         const response = await getProjects();
         return response.data.map(({projectId, name}: Project) => ({
@@ -75,8 +78,8 @@ export const projectsAsync = createAsyncThunk(
     }
 );
 
-export const filterSlice = createSlice({
-    name: 'filter',
+export const metadataSlice = createSlice({
+    name: 'metadata',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -87,21 +90,31 @@ export const filterSlice = createSlice({
             .addCase(gatewaysAsync.fulfilled, (state, action) => {
                 state.gateway.status = 'idle';
                 state.gateway.data = action.payload;
+                state.gateway.mapping = action.payload.reduce(
+                    (result: Record<string, Option>, item: Option) => {
+                        return {...result, [item.id]: item}
+                    }, {}
+                );
             })
             .addCase(projectsAsync.pending, (state) => {
                 state.project.status = 'loading'
             })
             .addCase(projectsAsync.fulfilled, (state, action) => {
                 state.project.status = 'idle';
-                state.project.data = action.payload
+                state.project.data = action.payload;
+                state.project.mapping = action.payload.reduce(
+                    (result: Record<string, Option>, item: Option) => {
+                        return {...result, [item.id]: item}
+                    }, {}
+                );
             });
     },
 });
 
-export const selectGateways = (state: RootState) => state.filter.gateway.data;
-export const selectGatewaysStatus = (state: RootState) => state.filter.gateway.status;
+export const selectGateways = (state: RootState) => state.metadata.gateway.data;
+export const selectGatewaysStatus = (state: RootState) => state.metadata.gateway.status;
 
-export const selectProjects = (state: RootState) => state.filter.project.data;
-export const selectProjectsStatus = (state: RootState) => state.filter.project.status;
+export const selectProjects = (state: RootState) => state.metadata.project.data;
+export const selectProjectsStatus = (state: RootState) => state.metadata.project.status;
 
-export default filterSlice.reducer;
+export default metadataSlice.reducer;

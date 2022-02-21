@@ -20,8 +20,8 @@ export interface GroupedReport {
 }
 
 export interface ReportBody {
-    projectId: string | undefined;
-    gatewayId: string | undefined;
-    from: string | undefined;
-    to: string | undefined;
+    projectId: string;
+    gatewayId: string;
+    from: string;
+    to: string;
 }

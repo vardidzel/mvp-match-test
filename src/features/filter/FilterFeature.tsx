@@ -33,8 +33,8 @@ const FilterFeature = () => {
             filters={filters}
             onFilter={(filters: FilterState) => {
                 const params = new URLSearchParams({
-                    projectId: filters.projectId || '',
-                    gatewayId: filters.gatewayId || '',
+                    projectId: filters.projectId ?? '',
+                    gatewayId: filters.gatewayId ?? '',
                     from: formatDate(filters.from),
                     to: formatDate(filters.to)
                 });

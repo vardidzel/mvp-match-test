@@ -1,4 +1,4 @@
-import {Action, configureStore, ThunkAction} from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import metadataReducer from '../features/metadata/metadataSlice';
 import reportsReducer from '../features/reports/reportsSlice';
 
@@ -11,7 +11,3 @@ export const store = configureStore({
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
-    RootState,
-    unknown,
-    Action<string>>;

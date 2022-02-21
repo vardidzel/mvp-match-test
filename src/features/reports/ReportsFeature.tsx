@@ -14,10 +14,10 @@ const ReportsFeature = () => {
 
     useEffect(() => {
         const filters: ReportBody = {
-            projectId: searchParams.get('projectId') ?? undefined,
-            gatewayId: searchParams.get('gatewayId') ?? undefined,
-            from: searchParams.get('from') ?? undefined,
-            to: searchParams.get('to') ?? undefined
+            projectId: searchParams.get('projectId') ?? '',
+            gatewayId: searchParams.get('gatewayId') ?? '',
+            from: searchParams.get('from') ?? '',
+            to: searchParams.get('to') ?? ''
         };
         setFilters(filters);
         dispatch(reportsAsync(filters));

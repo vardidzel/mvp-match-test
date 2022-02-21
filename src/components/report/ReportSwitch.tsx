@@ -32,7 +32,6 @@ const ReportSwitch = ({allGatewaysSelected, allProjectsSelected, reports, isLoad
             return {...groups, [groupField]: reports}
         }, {} as Record<string, Report[]>);
 
-
         return Object.values(groups).map((group) => ({
             data: group[0][field],
             reports: group,
@@ -42,7 +41,7 @@ const ReportSwitch = ({allGatewaysSelected, allProjectsSelected, reports, isLoad
     }
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div className="text text-dark font-weight-bold text-center py-5">Loading...</div>;
     }
 
     if (reports.length === 0) {

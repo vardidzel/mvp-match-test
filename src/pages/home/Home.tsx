@@ -2,8 +2,8 @@ import {Link} from "react-router-dom";
 
 const Home = () => {
     return (
-        <div className="container">
-            <Link to="/reports">Check my work</Link>
+        <div className="container text-center py-5">
+            <Link to="/reports" className="text text-dark font-weight-bold">See my work</Link>
         </div>
     )
 }

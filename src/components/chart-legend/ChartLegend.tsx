@@ -1,7 +1,11 @@
 import './ChartLegend.scss';
 import {GroupedReport} from "../../interfaces/report.interface";
 
-const ChartLegend = ({reportGroups}: any) => {
+interface Props {
+    reportGroups: GroupedReport[]
+}
+
+const ChartLegend = ({reportGroups}: Props) => {
     return <div className="component-bg d-flex align-items-center">
         {reportGroups.map((group: GroupedReport) => {
             return <div className="d-flex align-items-center" key={group.color}>
@@ -11,4 +15,5 @@ const ChartLegend = ({reportGroups}: any) => {
         })}
     </div>
 }
+
 export default ChartLegend;

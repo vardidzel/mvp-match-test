@@ -38,5 +38,10 @@ export const selectReports = (state: RootState): Report[] => state.report.report
     project: state.metadata.project.mapping[report.projectId],
     gateway: state.metadata.gateway.mapping[report.gatewayId]
 }));
+export const selectIsLoading = (state: RootState): boolean => (
+    state.report.status === 'loading' ||
+    state.metadata.project.status === 'loading' ||
+    state.metadata.gateway.status === 'loading'
+)
 
 export default reportsSlice.reducer;

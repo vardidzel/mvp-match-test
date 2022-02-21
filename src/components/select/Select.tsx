@@ -1,14 +1,14 @@
 import Form from "react-bootstrap/Form";
 import {Option} from "../../interfaces/option.interface";
 
-interface SelectProps {
+interface Props {
     options: Option[];
     defaultValue: string;
     value?: string;
     onChange: (value: string) => void;
 }
 
-const Select = ({options, defaultValue, value, onChange}: SelectProps) => {
+const Select = ({options, defaultValue, value, onChange}: Props) => {
     return (
         <Form.Select
             value={value}

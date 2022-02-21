@@ -1,13 +1,14 @@
 import {useEffect, useState} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {reportsAsync, selectReports} from "./reportsSlice";
+import {reportsAsync, selectIsLoading, selectReports} from "./reportsSlice";
 import ReportSwitch from "../../components/report/ReportSwitch";
 import {Report, ReportBody} from "../../interfaces/report.interface";
 
 const ReportsFeature = () => {
     const [filters, setFilters] = useState<ReportBody>({} as ReportBody);
     const reports: Report[] = useAppSelector(selectReports);
+    const loading: boolean = useAppSelector(selectIsLoading);
     const [searchParams] = useSearchParams();
     const dispatch = useAppDispatch();
 
@@ -27,6 +28,7 @@ const ReportsFeature = () => {
             allGatewaysSelected={!filters.gatewayId}
             allProjectsSelected={!filters.projectId}
             reports={reports}
+            isLoading={loading}
         />
     )
 }

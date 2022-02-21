@@ -9,21 +9,19 @@ import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
     return (
-        <>
+        <BrowserRouter>
             <Header/>
             <div className="sidebar">
                 <Sidebar/>
             </div>
             <div className="container">
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<Home/>}/>
-                        <Route path="reports" element={<ReportsPage/>}/>
-                    </Routes>
-                </BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="reports" element={<ReportsPage/>}/>
+                </Routes>
             </div>
             <Footer/>
-        </>
+        </BrowserRouter>
     );
 }
 

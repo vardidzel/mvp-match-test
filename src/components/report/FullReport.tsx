@@ -2,12 +2,13 @@ import {Accordion} from "react-bootstrap";
 import AccordionItem from "../accordion-item/AccordionItem";
 import PageTitle from "../page-title/PageTitle";
 import {GroupedReport} from "../../interfaces/report.interface";
+import {displayNumber} from "../../utils/format.util";
 
-interface FullReportProps {
+interface Props {
     reportGroups: GroupedReport[];
 }
 
-const FullReport = ({reportGroups}: FullReportProps) => {
+const FullReport = ({reportGroups}: Props) => {
     let sum = 0;
     return (
         <>
@@ -19,6 +20,7 @@ const FullReport = ({reportGroups}: FullReportProps) => {
                         return (
                             <AccordionItem
                                 group={group}
+                                showGatewayField={true}
                                 key={group.data.id}
                             />
                         )
@@ -26,7 +28,7 @@ const FullReport = ({reportGroups}: FullReportProps) => {
                 </Accordion>
             </div>
             <div className="component-bg text text-dark font-weight-bold mt-4">
-                TOTAL: {sum.toFixed(2)} USD
+                TOTAL: {displayNumber(sum)} USD
             </div>
         </>
     )

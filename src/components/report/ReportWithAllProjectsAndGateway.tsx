@@ -4,12 +4,13 @@ import PageTitle from "../page-title/PageTitle";
 import {Doughnut} from "react-chartjs-2";
 import ChartLegend from "../chart-legend/ChartLegend";
 import {GroupedReport} from "../../interfaces/report.interface";
+import {displayNumber} from "../../utils/format.util";
 
-interface FullReportProps {
+interface Props {
     reportGroups: GroupedReport[];
 }
 
-const ReportWithAllProjectsAndGateway = ({reportGroups}: FullReportProps) => {
+const ReportWithAllProjectsAndGateway = ({reportGroups}: Props) => {
     return (
         <div className="row align-items-baseline mt-4">
             <div className="col-md-6 component-bg">
@@ -43,7 +44,7 @@ const ReportWithAllProjectsAndGateway = ({reportGroups}: FullReportProps) => {
                     />
                 </div>
                 <div className="component-bg text text-dark font-weight-bold">
-                    GATEWAY TOTAL | {reportGroups.reduce((sum, item) => sum + item.amount, 0).toFixed(2)} USD
+                    GATEWAY TOTAL | {displayNumber(reportGroups.reduce((sum, item) => sum + item.amount, 0))} USD
                 </div>
             </div>
         </div>

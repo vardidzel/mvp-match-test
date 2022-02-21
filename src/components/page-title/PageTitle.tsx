@@ -1,10 +1,10 @@
 import './PageTitle.scss';
 
-interface PageTitleProps {
+interface Props {
     title: string
 }
 
-export const PageTitle = ({title}: PageTitleProps) => {
+export const PageTitle = ({title}: Props) => {
     return (
         <div className="text text-dark font-weight-bold mb-32">
             {title}

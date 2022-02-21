@@ -7,7 +7,7 @@ import './Filter.scss';
 import {Option} from "../../interfaces/option.interface";
 import {FilterState} from "../../interfaces/filter.interface";
 
-interface FilterProps {
+interface Props {
     projects: Option[];
     gateways: Option[];
     onFilter: (filters: FilterState) => void;
@@ -15,7 +15,7 @@ interface FilterProps {
     onFilterChange?: (filters: FilterState) => void;
 }
 
-const Filter = ({projects, gateways, filters, onFilterChange, onFilter}: FilterProps) => {
+const Filter = ({projects, gateways, filters, onFilterChange, onFilter}: Props) => {
     const [filterState, setFilterState] = useState<FilterState>({...filters});
 
     const updateFilterState = (name: string, value: Date | string) => {

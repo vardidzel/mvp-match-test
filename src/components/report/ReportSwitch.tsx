@@ -8,24 +8,20 @@ import NoReport from "./NoReport";
 
 Chart.register(ArcElement);
 
-interface ReportSwitchProps {
+interface Props {
     allGatewaysSelected: boolean;
     allProjectsSelected: boolean;
     reports: Report[];
+    isLoading: boolean;
 }
 
 type ReportKeys = 'gateway' | 'project';
 
-const ReportSwitch = ({allGatewaysSelected, allProjectsSelected, reports}: ReportSwitchProps) => {
-    const getRgb = (): number => Math.floor(Math.random() * 256);
+const ReportSwitch = ({allGatewaysSelected, allProjectsSelected, reports, isLoading}: Props) => {
+    const getRand = (): number => Math.floor(Math.random() * 256);
 
-    const rgbToHex = (r: number, g: number, b: number): string => {
-        const code = [r, g, b].map(x => {
-            const hex = x.toString(16);
-            return hex.length === 1 ? '0' + hex : hex;
-        }).join('');
-
-        return `#${code}`;
+    const getRgb = (): string => {
+        return `rgb(${getRand()}, ${getRand()}, ${getRand()})`;
     };
 
     const groupBy = (data: Report[], field: ReportKeys): GroupedReport[] => {
@@ -41,11 +37,15 @@ const ReportSwitch = ({allGatewaysSelected, allProjectsSelected, reports}: Repor
             data: group[0][field],
             reports: group,
             amount: group.reduce((sum, item) => sum + item.amount, 0),
-            color: rgbToHex(getRgb(), getRgb(), getRgb())
+            color: getRgb()
         }));
     }
 
-    if (!reports.length) {
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (reports.length === 0) {
         return <NoReport/>;
     }
 

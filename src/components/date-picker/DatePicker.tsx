@@ -1,6 +1,6 @@
 import ReactDatePicker from "react-datepicker";
 
-interface DatePickerProps {
+interface Props {
     onChange: (date: Date) => void;
     selected?: Date;
     minDate?: Date;
@@ -8,7 +8,7 @@ interface DatePickerProps {
     placeholderText?: string;
 }
 
-const DatePicker = ({selected, minDate, maxDate, onChange, placeholderText}: DatePickerProps) => {
+const DatePicker = ({selected, minDate, maxDate, onChange, placeholderText}: Props) => {
     return (
         <ReactDatePicker
             selected={selected}

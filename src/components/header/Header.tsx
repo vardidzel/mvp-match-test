@@ -1,11 +1,12 @@
 import logo from '../../assets/images/logo.svg';
 import menu from '../../assets/images/menu.svg';
 import './Header.scss';
+import {Link} from "react-router-dom";
 
 const Header = () => {
     return (
         <header className="header">
-            <img className="header__logo" src={logo} alt="Logo"/>
+            <Link to="/" className="header__logo"><img src={logo} alt="Logo"/></Link>
             <div className="container d-flex justify-content-between align-items-center">
                 <img src={menu} alt="Menu"/>
                 <div className="d-flex align-items-center">

@@ -1,13 +1,13 @@
 import {Accordion} from "react-bootstrap";
-import {GroupedReport} from "./ReportSwitch";
 import AccordionItem from "../accordion-item/AccordionItem";
 import PageTitle from "../page-title/PageTitle";
+import {GroupedReport} from "../../interfaces/report.interface";
 
 interface FullReportProps {
     reportGroups: GroupedReport[];
 }
 
-export const FullReport = ({reportGroups}: FullReportProps) => {
+const FullReport = ({reportGroups}: FullReportProps) => {
     let sum = 0;
     return (
         <>
@@ -31,3 +31,4 @@ export const FullReport = ({reportGroups}: FullReportProps) => {
         </>
     )
 }
+export default FullReport;

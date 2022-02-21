@@ -1,17 +1,18 @@
 import {useEffect, useState} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {Report, reportsAsync, selectReports} from "./reportsSlice";
+import {reportsAsync, selectReports} from "./reportsSlice";
 import ReportSwitch from "../../components/report/ReportSwitch";
+import {Report, ReportBody} from "../../interfaces/report.interface";
 
 const ReportsFeature = () => {
-    const [filters, setFilters] = useState<Record<string, string | undefined>>({});
+    const [filters, setFilters] = useState<ReportBody>({} as ReportBody);
     const reports: Report[] = useAppSelector(selectReports);
     const [searchParams] = useSearchParams();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        const filters: Record<string, string | undefined> = {
+        const filters: ReportBody = {
             projectId: searchParams.get('projectId') ?? undefined,
             gatewayId: searchParams.get('gatewayId') ?? undefined,
             from: searchParams.get('from') ?? undefined,

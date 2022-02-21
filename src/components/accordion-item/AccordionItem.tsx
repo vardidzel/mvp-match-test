@@ -1,6 +1,5 @@
-import {GroupedReport} from "../report/ReportSwitch";
 import {Accordion, Table} from "react-bootstrap";
-import {Report} from "../../features/reports/reportsSlice";
+import {GroupedReport, Report} from "../../interfaces/report.interface";
 
 interface AccordionItemProps {
     group: GroupedReport;

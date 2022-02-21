@@ -1,5 +1,5 @@
-import {Option} from "../../features/metadata/metadataSlice";
 import Form from "react-bootstrap/Form";
+import {Option} from "../../interfaces/option.interface";
 
 interface SelectProps {
     options: Option[];

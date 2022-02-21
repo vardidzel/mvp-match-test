@@ -1,35 +1,17 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../../app/store';
 import {generateReport} from "../../services/reportsAPI";
-import {Option} from "../metadata/metadataSlice";
+import {Report, ReportBody} from "../../interfaces/report.interface";
+import {ReportState} from "./reports.interface";
 
-type Status = 'idle' | 'loading' | 'failed';
-
-export interface Report {
-    paymentId: string;
-    amount: number;
-    projectId: string;
-    gatewayId: string;
-    userIds: string[];
-    modified: string;
-    created: string;
-    project: Option;
-    gateway: Option;
-}
-
-export interface FiltersState {
-    reports: Report[];
-    status: Status;
-}
-
-const initialState: FiltersState = {
+const initialState: ReportState = {
     reports: [],
     status: 'idle'
 };
 
 export const reportsAsync = createAsyncThunk(
     'reports/generateReport',
-    async (body: any) => {
+    async (body: ReportBody) => {
         const response = await generateReport(body);
         return response.data;
     }
@@ -56,6 +38,5 @@ export const selectReports = (state: RootState): Report[] => state.report.report
     project: state.metadata.project.mapping[report.projectId],
     gateway: state.metadata.gateway.mapping[report.gatewayId]
 }));
-export const selectReportsStatus = (state: RootState) => state.report.status;
 
 export default reportsSlice.reducer;

@@ -1,47 +1,10 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../../app/store';
 import {getGateways, getProjects} from "../../services/filtersAPI";
-
-type Status = 'idle' | 'loading' | 'failed';
-
-export interface Gateway {
-    gatewayId: string;
-    userIds: string[];
-    name: string;
-    type: string;
-    apiKey: string;
-    secondaryApiKey: string;
-    description: string;
-}
-
-export interface Project {
-    projectId: string;
-    userIds: string[];
-    rule: string;
-    gatewayIds: string[];
-    structure: string;
-    industry: string;
-    website: string;
-    description: string;
-    image: string;
-    name: string;
-}
-
-export interface Option {
-    id: string;
-    label: string;
-}
-
-interface OptionState {
-    status: Status;
-    data: Option[];
-    mapping: Record<string, Option>;
-}
-
-export interface MetadataState {
-    gateway: OptionState;
-    project: OptionState;
-}
+import {Project} from "../../interfaces/project.interface";
+import {Gateway} from "../../interfaces/gateway.interface";
+import {Option} from "../../interfaces/option.interface";
+import {MetadataState} from "./metadata.interface";
 
 const initialState: MetadataState = {
     gateway: {
@@ -112,9 +75,6 @@ export const metadataSlice = createSlice({
 });
 
 export const selectGateways = (state: RootState) => state.metadata.gateway.data;
-export const selectGatewaysStatus = (state: RootState) => state.metadata.gateway.status;
-
 export const selectProjects = (state: RootState) => state.metadata.project.data;
-export const selectProjectsStatus = (state: RootState) => state.metadata.project.status;
 
 export default metadataSlice.reducer;

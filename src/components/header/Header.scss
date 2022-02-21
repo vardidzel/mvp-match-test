@@ -1,0 +1,30 @@
+.header {
+  position: relative;
+  height: 80px;
+  border-bottom: 2px solid #F3F6F9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__logo {
+    position: absolute;
+    left: 35px;
+  }
+
+  &__text {
+    font-size: 16px;
+    margin-left: 11px;
+  }
+}
+
+.avatar {
+  width: 43px;
+  height: 43px;
+  background: #F6CA65;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  color: #fff;
+}

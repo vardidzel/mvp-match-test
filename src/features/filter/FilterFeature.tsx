@@ -1,9 +1,11 @@
-import Filter, {FilterState} from "../../components/filter/Filter";
+import Filter from "../../components/filter/Filter";
 import {useEffect, useMemo} from "react";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {Option, gatewaysAsync, projectsAsync, selectGateways, selectProjects} from "../metadata/metadataSlice";
+import {gatewaysAsync, projectsAsync, selectGateways, selectProjects} from "../metadata/metadataSlice";
 import {useSearchParams} from "react-router-dom";
 import {formatDate, toDate} from "../../utils/date.util";
+import {Option} from "../../interfaces/option.interface";
+import {FilterState} from "../../interfaces/filter.interface";
 
 const FilterFeature = () => {
     const gateways: Option[] = useAppSelector(selectGateways);

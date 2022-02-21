@@ -1,17 +1,11 @@
-import {Option} from "../../features/metadata/metadataSlice";
 import {useEffect, useState} from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "../select/Select";
 import DatePicker from "../date-picker/DatePicker";
 import './Filter.scss';
-
-export interface FilterState {
-    projectId?: string;
-    gatewayId?: string;
-    from?: Date;
-    to?: Date;
-}
+import {Option} from "../../interfaces/option.interface";
+import {FilterState} from "../../interfaces/filter.interface";
 
 interface FilterProps {
     projects: Option[];

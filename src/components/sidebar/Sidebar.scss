@@ -1,0 +1,11 @@
+.sidebar {
+  &__item {
+    img {
+      filter: grayscale(100%);
+
+      &.active {
+        filter: unset;
+      }
+    }
+  }
+}

@@ -11,7 +11,7 @@ function App() {
     return (
         <BrowserRouter>
             <Header/>
-            <div className="sidebar">
+            <div className="sidebar-holder">
                 <Sidebar/>
             </div>
             <div className="container">
